@@ -10,6 +10,7 @@ function menuResize(){
 }
 //
 function toCv(time){
+	clearInterval(hiddenPhrase);
 	$('#to-cv').animate({
 		opacity:0
 	},500,function(){
@@ -34,6 +35,20 @@ function changeColor(selector){
 	obj.css('color',colors[Math.floor(Math.random()*colors.length)]);
 }
 $(document).ready(function(){
+	
+	hiddenPhrase=setInterval(function(){
+		$('.pre-cv').prepend('<div class="hidden-phrase">Хочу в Яндекс</div>');
+		var left =Math.floor( Math.random()*parseInt($(document).width()) )-$('.hidden-phrase').width();
+		var top =Math.floor( Math.random()*parseInt($(document).height()) )-$('.hidden-phrase').height();
+		changeColor('.hidden-phrase');
+		$('.hidden-phrase').css('left',left).css('top',top);
+		setTimeout(function(){
+			$('.hidden-phrase').remove();
+		},200);
+	},2000);
+
+	toCvSize();
+	menuResize();
 
 	//меняем цвет букве я
 	$('#ya').hover(function(){
@@ -46,13 +61,15 @@ $(document).ready(function(){
 		},5000);
 	},10000);
 
-	toCvSize();
-	menuResize();
+	
 	//toCv(0);
 	if($.cookie('start')=='skip'){
+		clearInterval(hiddenPhrase);
 		$('body,html').css('overflow','auto');
 			$('.pre-cv').remove();
+
 	}
+
 
 	$('.menu a').click(function(event){
 		event.preventDefault();
