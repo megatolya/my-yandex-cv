@@ -16,7 +16,7 @@ function toCv(time){
 				},time);
 	$('.to-cv-tip').animate({
 		left:$(window).width(),
-		opacity:0.1,
+		opacity:0.1
 
 	},time);
 	clearInterval(hiddenPhrase);
@@ -69,7 +69,9 @@ $(document).keydown(function(e){
 	}
 });
 $(document).ready(function(){
-	
+	if($.browser.msie && $.browser.version=='7.0'){
+		$('.menu ul').css('border','none');
+	}
 	//по умолчанию вкладка я
 	$('.content>div').hide();
 	$('#me').show();
@@ -91,7 +93,7 @@ $(document).ready(function(){
 		changeColor('#phrase'+phraseCount);
 		$('#phrase'+phraseCount).css('left',left).css('top',top);
 		
-	},50);
+	},100);
 
 	toCvSize();
 	
