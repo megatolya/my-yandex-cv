@@ -5,14 +5,26 @@ function toCvSize(){
 
 //переход от старта к резюме
 function toCv(time){
+	$('.to-cv-tip').animate({
+		left:$(window).width(),
+		opacity:0.1,
+
+	},time);
 	clearInterval(hiddenPhrase);
 	$('#to-cv').animate({
 		opacity:0
-	},500,function(){
+	},time,function(){
 		$('.pre-cv').slideUp(time,function(){
 			$('body,html').css('overflow','auto');
 			$('.pre-cv').remove();
-			$.cookie('start','skip')
+			$.cookie('start','skip');
+			//если не работают куки заносим в хеш
+			if($.cookie('start')!='skip'){
+				document.location.hash='opened';	
+			}
+			setInterval(function(){
+				changeColor('#ya');
+			},5000);
 		});	
 	});
 	
@@ -39,7 +51,11 @@ function changeContent(obj){
 	$($(obj).attr('href')).show();
 	
 }
-
+$(document).keydown(function(e){
+	if(e.keyCode==40 || e.keyCode==13){
+		toCv(300);
+	}
+});
 $(document).ready(function(){
 	
 	//по умолчанию вкладка я
@@ -55,15 +71,15 @@ $(document).ready(function(){
 
 	//скрытая фраза вначале
 	hiddenPhrase=setInterval(function(){
-		$('.pre-cv').prepend('<div class="hidden-phrase">Хочу в Яндекс</div>');
+		$('.pre-cv').prepend('<div class="hidden-phrase">Хочу в Яндекс :-)</div>');
 		var left =Math.floor( Math.random()*parseInt($(document).width()) )-$('.hidden-phrase').width();
 		var top =Math.floor( Math.random()*parseInt($(document).height()) )-$('.hidden-phrase').height();
 		changeColor('.hidden-phrase');
 		$('.hidden-phrase').css('left',left).css('top',top);
 		setTimeout(function(){
 			$('.hidden-phrase').remove();
-		},200);
-	},2000);
+		},300);
+	},1800);
 
 	toCvSize();
 	
@@ -72,22 +88,16 @@ $(document).ready(function(){
 	$('#ya').hover(function(){
 		changeColor('#ya');
 	});
-	setTimeout(function(){
-		setInterval(function(){
-			changeColor('#ya');
-
-		},5000);
-	},10000);
-
 	
 	//если работают куки, то стартовая кнопка видна только один раз
-	if($.cookie('start')=='skip'){
+	if($.cookie('start')=='skip' || document.location.hash=='opened' || document.location.hash=='#opened'){
+		setInterval(function(){
+				changeColor('#ya');
+			},5000);
 		clearInterval(hiddenPhrase);
 		$('body,html').css('overflow','auto');
 			$('.pre-cv').remove();
 	}
-	
-	
 });
 //ресайзы
 $(window).resize(function(){
