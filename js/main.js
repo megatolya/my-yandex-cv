@@ -81,13 +81,11 @@ $(document).ready(function(){
 
 	
 	//если работают куки, то стартовая кнопка видна только один раз
-	/*if($.cookie('start')=='skip'){
+	if($.cookie('start')=='skip'){
 		clearInterval(hiddenPhrase);
 		$('body,html').css('overflow','auto');
 			$('.pre-cv').remove();
-	}*/
-	
-	
+	}
 	
 	
 });
