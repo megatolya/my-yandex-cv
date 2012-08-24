@@ -9,6 +9,11 @@ body,html{
 	padding: 0;
 	margin: 0;
 }
+.link{
+	border-bottom: 1px dashed #0055CC;
+	color: #0055CC;
+	cursor: pointer;
+}
 
 .pre-cv{
 	width: 100%;
@@ -131,6 +136,11 @@ background-image: -moz-linear-gradient(top, #f11, #f11);
 		background-image: -moz-linear-gradient(top, #e00, #f00);
 	}
 
+	.content ol,
+	.content ul {
+		list-style-position: outside;
+		margin-left: 50px;
+	}
 	.content p,
 	.content h1,
 	.content h2,
@@ -141,4 +151,16 @@ background-image: -moz-linear-gradient(top, #f11, #f11);
 	{
 		margin: 20px 30px;
 		line-height: 30px;
+	}
+	.answer{
+		margin: 20px 0 !important;
+		border-bottom: 1px solid black;
+	}
+	.answer h3{
+		padding: 20px;
+		background: #ffeb9c;
+		border: 2px dashed black;
+		-webkit-border-radius:15px;
+     -moz-border-radius:15px;
+          border-radius: 15px;
 	}

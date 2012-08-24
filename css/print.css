@@ -1,0 +1,13 @@
+#me,
+.link,
+.pre-cv,
+.menu
+{
+	display: none !important;
+}
+
+#answers
+{
+	display: block !important;
+}
+
