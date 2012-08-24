@@ -5,6 +5,15 @@ function toCvSize(){
 
 //переход от старта к резюме
 function toCv(time){
+
+	$('.hidden-phrase').each(function(k,obj){
+				var left =Math.floor( Math.random()*parseInt($(document).width()) )-$('.hidden-phrase').width();
+				var top =Math.floor( Math.random()*parseInt($(document).height()) )-$('.hidden-phrase').height();
+				$(this).animate({
+					/*left:left,
+					top:top,*/
+					opacity:0
+				},time);
 	$('.to-cv-tip').animate({
 		left:$(window).width(),
 		opacity:0.1,
@@ -22,6 +31,9 @@ function toCv(time){
 			if($.cookie('start')!='skip'){
 				document.location.hash='opened';	
 			}
+
+			
+			});
 			setInterval(function(){
 				changeColor('#ya');
 			},5000);
@@ -70,16 +82,16 @@ $(document).ready(function(){
 	});
 
 	//скрытая фраза вначале
+	var phraseCount=0;
 	hiddenPhrase=setInterval(function(){
-		$('.pre-cv').prepend('<div class="hidden-phrase">Хочу в Яндекс :-)</div>');
+		phraseCount++;
+		$('.pre-cv').prepend('<div id="phrase'+phraseCount+'" class="hidden-phrase">:-)</div>');
 		var left =Math.floor( Math.random()*parseInt($(document).width()) )-$('.hidden-phrase').width();
 		var top =Math.floor( Math.random()*parseInt($(document).height()) )-$('.hidden-phrase').height();
-		changeColor('.hidden-phrase');
-		$('.hidden-phrase').css('left',left).css('top',top);
-		setTimeout(function(){
-			$('.hidden-phrase').remove();
-		},300);
-	},1800);
+		changeColor('#phrase'+phraseCount);
+		$('#phrase'+phraseCount).css('left',left).css('top',top);
+		
+	},50);
 
 	toCvSize();
 	
@@ -89,7 +101,7 @@ $(document).ready(function(){
 		changeColor('#ya');
 	});
 	
-	//если работают куки, то стартовая кнопка видна только один раз
+	//если работают куки или поставлен хеш, то стартовая кнопка видна только один раз
 	if($.cookie('start')=='skip' || document.location.hash=='opened' || document.location.hash=='#opened'){
 		setInterval(function(){
 				changeColor('#ya');
