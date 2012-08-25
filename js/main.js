@@ -35,7 +35,7 @@ function toCv(time){
 
 			setTimeout(function(){
 				$('#my-mail').animate({opacity:1});
-			},3000);
+			},2000);
 			});
 			setInterval(function(){
 				changeColor('#ya');
@@ -105,7 +105,7 @@ $(document).ready(function(){
 		changeColor('#phrase'+phraseCount);
 		$('#phrase'+phraseCount).css('left',left).css('top',top);
 		
-	},100);
+	},500);
 
 	toCvSize();
 	
@@ -124,7 +124,7 @@ $(document).ready(function(){
 		$('body,html').css('overflow','auto');
 		setTimeout(function(){
 			$('#my-mail').animate({opacity:1});
-		},3000);
+		},2000);
 		$('.pre-cv').remove();
 	}
 });
