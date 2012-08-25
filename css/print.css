@@ -1,8 +1,10 @@
+@page {margin:0.5in;}
 #me,
 .link,
 .pre-cv,
 .menu,
-.show-txt
+.show-txt,
+#my-mail
 {
 	display: none !important;
 }
