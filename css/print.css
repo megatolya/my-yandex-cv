@@ -1,12 +1,14 @@
 #me,
 .link,
 .pre-cv,
-.menu
+.menu,
+.show-txt
 {
 	display: none !important;
 }
 
-#answers
+#answers,
+.hidden-txt
 {
 	display: block !important;
 }

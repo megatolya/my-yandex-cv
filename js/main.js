@@ -26,13 +26,16 @@ function toCv(time){
 		$('.pre-cv').slideUp(time,function(){
 			$('body,html').css('overflow','auto');
 			$('.pre-cv').remove();
-			$.cookie('start','skip');
+			//отказался от куки, т.к. не удобно смотреть
+			/*$.cookie('start','skip');*/
 			//если не работают куки заносим в хеш
 			if($.cookie('start')!='skip'){
 				document.location.hash='opened';	
 			}
 
-			
+			setTimeout(function(){
+				$('#my-mail').animate({opacity:1});
+			},3000);
 			});
 			setInterval(function(){
 				changeColor('#ya');
@@ -69,6 +72,15 @@ $(document).keydown(function(e){
 	}
 });
 $(document).ready(function(){
+
+	$('.show-txt').click(function(e){
+		e.preventDefault();
+		$(this).hide(0,function(){
+			$($(this).attr('show')).show('slow');	
+		});
+		
+	});
+
 	if($.browser.msie && $.browser.version=='7.0'){
 		$('.menu ul').css('border','none');
 	}
@@ -110,7 +122,10 @@ $(document).ready(function(){
 			},5000);
 		clearInterval(hiddenPhrase);
 		$('body,html').css('overflow','auto');
-			$('.pre-cv').remove();
+		setTimeout(function(){
+			$('#my-mail').animate({opacity:1});
+		},3000);
+		$('.pre-cv').remove();
 	}
 });
 //ресайзы

@@ -114,13 +114,69 @@ background-image: -moz-linear-gradient(top, #f11, #f11);
 	background-repeat: repeat-x;*/
 	padding: 10px 0;
 }
+.layout{
+	position: relative;
+	width: 900px;
+	margin: 0 auto;
+}
+
 .header *{
 	margin: 20px 0;
 	font-weight: normal;
 	text-align: center;
 }
+.header h1{
+	font-size: 30px;
+}
+.hidden-txt{
+
+	display: none;
+}
+.content .hidden-txt{
+	margin: 20px 0;
+}
+#my-mail{
+	opacity: 0;
+	position: absolute;
+	top:0;
+	left:0;
+	width:160px;
+	height:124px
+}
+#my-mail .head{
+	
+	
+	height: 21px;
+	background: url('../img/domik-roof2.png') no-repeat;
+}
+#my-mail  h5 a{
+	font-size: 13px;
+	color: black !important;
+	font-weight: normal;
+}
+#my-mail a:link,
+#my-mail a:visited
+{
+	color: #005cd4;
+}
+#my-mail .body{
+	background: #b5cdf8;
+	border: 1px solid #b5cdf8;
+	border-top: none;
+	word-wrap: break-word;
+	padding: 0 18px;
+	text-align: center;
+	font-size: 13px;
+	background: url('../img/domik__bg2.png');
+	height: 100px;
+}
+#my-mail .body p{
+	margin: 10px 0;
+}
+
 
 .menu ul{
+		min-width: 661px;
 		border-bottom: 1px solid red;
 	}
 	.menu li{
