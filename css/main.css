@@ -132,7 +132,7 @@ background-image: -moz-linear-gradient(top, #f11, #f11);
 
 	display: none;
 }
-.content .hidden-txt{
+.content div.hidden-txt{
 	margin: 20px 0;
 }
 #my-mail{

@@ -24,7 +24,11 @@ function toCv(time){
 		opacity:0
 	},time,function(){
 		$('.pre-cv').slideUp(time,function(){
-			$('body,html').css('overflow','auto');
+			if($.browser.msie && $.browser.version=='7.0'){
+				$('html').css('overflow','auto');
+			}else{
+				$('html,body').css('overflow','auto');
+			}
 			$('.pre-cv').remove();
 			//отказался от куки, т.к. не удобно смотреть
 			/*$.cookie('start','skip');*/
@@ -75,9 +79,19 @@ $(document).ready(function(){
 
 	$('.show-txt').click(function(e){
 		e.preventDefault();
-		$(this).hide(0,function(){
-			$($(this).attr('show')).show('slow');	
-		});
+
+		if($(this).attr('shown')=='yes') {
+			$(this).removeAttr('shown');
+			$(this).text($(this).attr('text'));
+			$($(this).attr('show')).hide();	
+		}else{
+			$(this).attr('text',$(this).text());
+			$($(this).attr('show')).show();	
+			$(this).text('скрыть');
+			$(this).attr('shown','yes');
+
+		}
+		
 		
 	});
 
@@ -121,7 +135,11 @@ $(document).ready(function(){
 				changeColor('#ya');
 			},5000);
 		clearInterval(hiddenPhrase);
-		$('body,html').css('overflow','auto');
+		if($.browser.msie && $.browser.version=='7.0'){
+			$('html').css('overflow','auto');
+		}else{
+			$('html,body').css('overflow','auto');
+		}
 		setTimeout(function(){
 			$('#my-mail').animate({opacity:1});
 		},2000);
