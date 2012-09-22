@@ -30,7 +30,7 @@ function toCv(time){
 				$('html,body').css('overflow','auto');
 			}
 			$('.pre-cv').remove();
-			//отказался от куки, т.к. не удобно смотреть
+			//отказался от куки, т.к. не удобно смотреть резюме, якорь проще стереть
 			/*$.cookie('start','skip');*/
 			//если не работают куки заносим в хеш
 			if($.cookie('start')!='skip'){
@@ -48,6 +48,12 @@ function toCv(time){
 	});
 	
 }
+//открытие резюме по кнопкам
+$(document).keydown(function(e){
+	if(e.keyCode==40 || e.keyCode==13){
+		toCv(300);
+	}
+});
 //меняет цвет, взяв его из массива
 function changeColor(selector){
 	var	obj=$(selector), colors=[
@@ -70,16 +76,20 @@ function changeContent(obj){
 	$($(obj).attr('href')).show();
 	
 }
-$(document).keydown(function(e){
-	if(e.keyCode==40 || e.keyCode==13){
-		toCv(300);
-	}
-});
+
+
 $(document).ready(function(){
 
+	//ресайзим кнопку
+	toCvSize();
+
+	//по умолчанию вкладка обо мне
+	$('.content>div').hide();
+	$('#me').show();
+
+	//кнопки показать/скрыть
 	$('.show-txt').click(function(e){
 		e.preventDefault();
-
 		if($(this).attr('shown')=='yes') {
 			$(this).removeAttr('shown');
 			$(this).text($(this).attr('text'));
@@ -89,27 +99,21 @@ $(document).ready(function(){
 			$($(this).attr('show')).show();	
 			$(this).text('скрыть');
 			$(this).attr('shown','yes');
-
 		}
-		
-		
 	});
 
 	if($.browser.msie && $.browser.version=='7.0'){
 		$('.menu ul').css('border','none');
 	}
-	//по умолчанию вкладка я
-	$('.content>div').hide();
-	$('#me').show();
+	
 
 	//меню и контент
 	$('.menu a').click(function(e){
-
 		e.preventDefault();
 		changeContent(this);
 	});
 
-	//скрытая фраза вначале
+	// :-)
 	var phraseCount=0;
 	hiddenPhrase=setInterval(function(){
 		phraseCount++;
@@ -118,17 +122,13 @@ $(document).ready(function(){
 		var top =Math.floor( Math.random()*parseInt($(document).height()) )-$('.hidden-phrase').height();
 		changeColor('#phrase'+phraseCount);
 		$('#phrase'+phraseCount).css('left',left).css('top',top);
-		
 	},500);
-
-	toCvSize();
-	
 
 	//меняем цвет букве я
 	$('#ya').hover(function(){
 		changeColor('#ya');
 	});
-	
+
 	//если работают куки или поставлен хеш, то стартовая кнопка видна только один раз
 	if($.cookie('start')=='skip' || document.location.hash=='opened' || document.location.hash=='#opened'){
 		setInterval(function(){
@@ -146,6 +146,7 @@ $(document).ready(function(){
 		$('.pre-cv').remove();
 	}
 });
+
 //ресайзы
 $(window).resize(function(){
 	toCvSize();
